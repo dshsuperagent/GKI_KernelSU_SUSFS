@@ -504,8 +504,8 @@ jobs:
 
       - name: Build Normal Kernel
         env:
-          SOURCE_DATE_EPOCH: ${{ env.SOURCE_DATE_EPOCH }}
-          KBUILD_BUILD_TIMESTAMP: ${{ env.KBUILD_BUILD_TIMESTAMP }}
+          SOURCE_DATE_EPOCH: "1788610779"
+          KBUILD_BUILD_TIMESTAMP: "Sat Sep  5 12:19:39 UTC 2026"
           KBUILD_BUILD_USER: ${{ (inputs.version == 'android15-6.6' || inputs.version == 'android16-6.12' || inputs.version == 'android17-6.18') && 'kleaf' || 'build-user' }}
           KBUILD_BUILD_HOST: build-host
         uses: ./.github/actions/build-kernel
