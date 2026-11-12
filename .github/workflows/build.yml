@@ -502,6 +502,15 @@ jobs:
           version: ${{ inputs.version }}
           allow_version_mismatch: true
 
+      - name: Pin UTS_VERSION to stock timestamp
+        shell: bash
+        run: |
+          set -euo pipefail
+          f="${{ github.workspace }}/kernel/common/init/version-timestamp.c"
+          test -f "$f" || { echo "version-timestamp.c not found"; exit 1; }
+          sed -i 's/UTS_VERSION/"#1 SMP PREEMPT Sat Sep  5 12:19:39 UTC 2026"/g' "$f"
+          grep -n 'SMP PREEMPT' "$f"
+
       - name: Build Normal Kernel
         env:
           SOURCE_DATE_EPOCH: "1788610779"
